@@ -1,0 +1,67 @@
+def posi_exponent(number):
+	res = number
+	exp = 127
+	while(res >= 2):
+		res = res / 2
+		exp += 1
+	exponent = bin(exp)
+	first, fraction = str(res).split(".")
+	value = "0." + fraction
+	while(float(value) != 0.0):
+		value = float(value)*2
+		first, fraction = str(value).split(".")
+		mantissa += first
+		value = "0." + fraction
+	result = str(exponent) + str(mantissa)
+	return result
+
+def neg_exponent(number):
+	res = number
+	exp = 127
+	while(res < 1):
+		res = res*2
+		exp -= 1
+	exponent = bin(exp)
+	first, fraction = str(res).split(".")
+	value = "0." + fraction
+	while(float(value) != 0.0):
+		value = float(value)*2
+		first, fraction = str(value).split(".")
+		mantissa += first
+		value = "0." + fraction
+	result = str(exponent) + str(mantissa)
+	return result
+
+def exponent_test(number):
+	if number < 1 and number > 0:
+		convert = "0" + neg_exponent(number)
+	elif number < 0:
+		convert = "1" + neg_exponent(number)
+	else:
+		convert = "0" + posi_exponent(number)
+	return convert
+
+
+def main_menu():
+    print("Selecione o tipo de operação que deseja fazer")
+    print("1 - Converter um número")
+    print("2 - Sair")
+    choice = get_integer_input("Digite a sua escolha")
+
+    if choice == 1:
+        exitflag = False
+        number = get_float_input("Digite o número sobre o qual deseja realizar a conversão")
+		#Chamar a função exponent_test, mas deu erro --> outcome = exponent_test(number)
+
+	if choice == 2:
+		return True
+	else:
+		return false
+
+def main():
+	exitflag = False
+	while exitflag is False:
+		clrscr()
+		exitflag = main_menu()
+
+main()
