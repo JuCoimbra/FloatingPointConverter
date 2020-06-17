@@ -1,76 +1,7 @@
 import sys
 import os
-
-def converter_mantissa(number):
-	first, fraction = str(number).split(".")
-	value = "0." + fraction
-	while True:
-		value = float(value) * 2
-		firstI, fractionI = str(value).split(".")
-		mantissa += firstI
-		value = "0." + fractionI
-		if float(value) == 0.0:
-			return mantissa
-
-def mantissa32(mantissa):
-	while True:
-		mantissa = "0" + str(mantissa)
-		if len(mantissa) == 23:
-			return mantissa
-
-def mantissa64(mantissa):
-	while True:
-		mantissa = "0" + str(mantissa)
-		if len(mantissa) == 52:
-			return mantissa
-
-def exponent32(exponent):
-	while True:
-		exponent = "0" + str(exponent)
-		if len(exponent) == 8:
-			return exponent
-
-def exponent64(exponent):
-	while True:
-		exponent = "0" + str(exponent)
-		if len(exponent) == 11:
-			return exponent
-
-
-def posi_exponent(number):
-	exp = 127
-	while True:
-		number = number / 2
-		exp += 1
-		if number < 2:
-			break
-	x = bin(exp)
-	exponent = str(x).replace('0b', ' ')
-	exponent = exponent.lstrip()
-	mantissa = converter_mantissa(number)
-	result = str(exponent) + str(mantissa)
-	return result
-
-def neg_exponent(number):
-	exp = 127
-	while True:
-		number = number * 2
-		exp -= 1
-		if number >= 1:
-			break
-	exponent = bin(exp).replace('0b', ' ')
-	mantissa = converter_mantissa(number)
-	result = str(exponent) + str(mantissa)
-	return result
-
-def exponent_converter(number):
-	if number < 1 and number > 0:
-		convert = "0" + neg_exponent(number)
-	elif number < 0:
-		convert = "1" + neg_exponent(number)
-	else:
-		convert = "0" + posi_exponent(number)
-	return convert
+import FloatPoint
+import DoublePoint
 
 def input_integer(message):
 	try:
@@ -81,11 +12,11 @@ def input_integer(message):
 	else:
 		return numberI
 
-def input_float(message):
+def input_Decimal(message):
 	try:
 		numberF = float(input(message))
 	except ValueError:
-		print("Por favor, digite um número!")
+		print("Por favor, digite um número ou tente colocar um ponto no lugar da virgula!")
 		return input_float(message)
 	else:
 		return numberF
@@ -93,16 +24,22 @@ def input_float(message):
 def main_menu():
 
 	print("Selecione o tipo de operação que deseja fazer")
-	print("1 - Converter um número")
-	print("2 - Sair")
+	print("1 - Converter um número para precisão simples - 32bits")
+	print("2 - Converter um número para precisão dupla - 64bits")
+	print("3 - Sair")
 	choice = input_integer("Digite a sua escolha: ")
 
 	if choice == 1:
-		exitfla = False
-		number = input_float("Digite o número a ser convertido: ")
-		outcome = exponent_converter(number)
+		exitflag = False
+		number = input_Decimal("Digite o número a ser convertido: ")
+		outcome = float_converter(number)
 
 	if choice == 2:
+		exitflag = False
+		number = input_Decimal("Digite o número a ser convertido: ")
+		outcome = Double_converter(number)
+
+	if choice == 3:
 		return True
 	else:
 		return False
@@ -111,7 +48,7 @@ def main_menu():
 def main():
 	exitflag = False
 	while exitflag is False:
-		os.system('cls')
+		os.system('cls') or None
 		exitflag = main_menu()
 
 main()
