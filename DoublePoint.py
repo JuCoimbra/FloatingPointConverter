@@ -21,15 +21,27 @@ def converter_mantissa64(number):
 
 def posi_Double(number):
     exp = 1023
-    while True:
-        number = number / 2
-        exp += 1
-        if number < 2:
-            break
-    x = bin(exp)
-    exponent = str(x).replace('0b', ' ')
-    exponent = exponent.lstrip() + "."
+
+    if(number < 0):
+        number = number * -1
+
+    if number > 9:
+        while True:
+            number = number / 2
+            exp += 1
+            if number < 2:
+                break
+
+    exponent = bin(exp).replace('0b', '')
+
+    if len(exponent) < 11:
+        while len(exponent) < 11:
+            exponent = '0' + exponent
+
+    exponent = exponent + "."
+
     mantissa = converter_mantissa64(number)
+
     if len(mantissa) < 52:
         mantissa = mantissa64(mantissa)
     elif len(mantissa) > 52:
@@ -38,15 +50,24 @@ def posi_Double(number):
     return result
 
 
-def neg_Double(number):
+def small_number(number):
     exp = 1023
+
+    if(number < 0):
+        number = number * -1
+
     while True:
         number = number * 2
         exp -= 1
         if number >= 1:
             break
-    exponent = bin(exp).replace('0b', ' ')
-    exponent = exponent.lstrip() + "."
+
+    exponent = bin(exp).replace('0b', '')
+    if len(exponent) < 11:
+        while len(exponent) < 11:
+            exponent = '0' + exponent
+    exponent = exponent + "."
+
     mantissa = converter_mantissa64(number)
     if len(mantissa) < 52:
         mantissa = mantissa64(mantissa)
@@ -58,9 +79,11 @@ def neg_Double(number):
 
 def Double_converter(number):
     if number < 1 and number > 0:
-        convert = "0." + neg_Double(number)
-    elif number < 0:
-        convert = "1." + neg_Double(number)
+        convert = "0." + small_number(number)
+    elif number < 0 and number < -1:
+        convert = "1." + posi_Double(number)
+    elif number < 0 and number > -1:
+        convert = "1." + small_number(number)
     else:
         convert = "0." + posi_Double(number)
     return convert

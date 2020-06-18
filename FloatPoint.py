@@ -4,8 +4,6 @@ def mantissa32(mantissa):
         if len(mantissa) == 23:
             return mantissa
 
-# 10100000000000000000000
-
 
 def converter_mantissa32(number):
     first, fraction = str(number).split(".")
@@ -41,6 +39,7 @@ def posi_float(number):
             exponent = '0' + exponent
 
     exponent = exponent + "."
+
     mantissa = converter_mantissa32(number)
     if len(mantissa) < 23:
         mantissa = mantissa32(mantissa)
@@ -66,8 +65,8 @@ def small_number(number):
     if len(exponent) < 8:
         while len(exponent) < 8:
             exponent = '0' + exponent
-
     exponent = exponent + "."
+
     mantissa = converter_mantissa32(number)
     if len(mantissa) < 23:
         mantissa = mantissa32(mantissa)
