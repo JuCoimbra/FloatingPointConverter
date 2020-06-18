@@ -1,3 +1,6 @@
+import struct
+
+
 def mantissa32(mantissa):
     while True:
         mantissa = str(mantissa) + "0"
@@ -86,3 +89,7 @@ def float_converter(number):
     else:
         convert = "0." + posi_float(number)
     return convert
+
+
+def float_to_hex(f):
+    return hex(struct.unpack('<I', struct.pack('<f', f))[0])

@@ -19,10 +19,10 @@ def main_menu():
             "Digite o número a ser convertido: ")
         outcome = f.float_converter(number)
         signal, exponent, mantissa = outcome.split(".")
-        hex = float.hex(number)
+        converted_number = f.float_to_hex(number)
         print(f"Sinal: {signal} Expoente: {exponent} Mantissa: {mantissa}")
         print(f"Binário: {signal}{exponent}{mantissa}")
-        print(f"Hexadecimal: {hex}\n")
+        print(f"Hexadecimal: {converted_number}\n")
         helpers.waitForKeypress()
         helpers.clrscr()
 
@@ -31,11 +31,11 @@ def main_menu():
         number = helpers.get_float_input(
             "Digite o número a ser convertido: ")
         outcome = d.Double_converter(number)
+        converted_number = d.double_to_hex(number)
         signal, exponent, mantissa = outcome.split(".")
-        hex = float.hex(number)
         print(f"Sinal: {signal} Expoente: {exponent} Mantissa: {mantissa}")
         print(f"Binário: {signal}{exponent}{mantissa}")
-        print(f"Hexadecimal: {hex}\n")
+        print(f"Hexadecimal: {converted_number}\n")
         helpers.waitForKeypress()
         helpers.clrscr()
 

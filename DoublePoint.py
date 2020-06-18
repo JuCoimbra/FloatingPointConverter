@@ -1,3 +1,6 @@
+import struct
+
+
 def mantissa64(mantissa):
     while True:
         mantissa = str(mantissa) + "0"
@@ -87,3 +90,7 @@ def Double_converter(number):
     else:
         convert = "0." + posi_Double(number)
     return convert
+
+
+def double_to_hex(f):
+    return hex(struct.unpack('<Q', struct.pack('<d', f))[0])
