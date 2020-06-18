@@ -2,6 +2,8 @@ import sys
 import os
 import FloatPoint as f
 import DoublePoint as d
+import helpers
+
 
 def input_integer(message):
 	try:
@@ -20,7 +22,6 @@ def input_Decimal(message):
 		return input_Decimal(message)
 	else:
 		return numberF
-
 
 def main_menu():
 
@@ -59,7 +60,7 @@ def main_menu():
 def main():
 	exitflag = False
 	while exitflag is False:
-		os.system('cls') or None
+		helpers.clrscr() or None
 		exitflag = main_menu()
 
 main()
