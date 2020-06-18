@@ -11,15 +11,16 @@ def main_menu():
     print("1 - Converter um número para precisão simples - 32bits")
     print("2 - Converter um número para precisão dupla - 64bits")
     print("3 - Sair")
-    choice = helpers.get_integer_input("Digite a sua escolha: ")
+    choice = helpers.get_integer_input("Digite a sua escolha:")
 
     if choice == 1:
         helpers.clrscr()
         number = helpers.get_float_input(
-            "Digite o número a ser convertido: ")
+            "Digite o número a ser convertido:")
         outcome = f.float_converter(number)
         signal, exponent, mantissa = outcome.split(".")
         converted_number = f.float_to_hex(number)
+        print("Em ponto flutuante:" + str(float(number)))
         print(f"Sinal: {signal} Expoente: {exponent} Mantissa: {mantissa}")
         print(f"Binário: {signal}{exponent}{mantissa}")
         print(f"Hexadecimal: {converted_number}\n")
@@ -33,6 +34,7 @@ def main_menu():
         outcome = d.Double_converter(number)
         converted_number = d.double_to_hex(number)
         signal, exponent, mantissa = outcome.split(".")
+        print("Em ponto flutuante:" + str(float(number)))
         print(f"Sinal: {signal} Expoente: {exponent} Mantissa: {mantissa}")
         print(f"Binário: {signal}{exponent}{mantissa}")
         print(f"Hexadecimal: {converted_number}\n")
