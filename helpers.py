@@ -1,6 +1,7 @@
 from decimal import *
 import platform
 import os
+import struct
 
 
 def get_integer_input(prompt):

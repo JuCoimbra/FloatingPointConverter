@@ -15,7 +15,7 @@ def main_menu():
 
     if choice == 1:
         helpers.clrscr()
-        number = helpers.get_decimal_input(
+        number = helpers.get_float_input(
             "Digite o número a ser convertido: ")
         outcome = f.float_converter(number)
         signal, exponent, mantissa = outcome.split(".")
@@ -28,7 +28,7 @@ def main_menu():
 
     if choice == 2:
         helpers.clrscr()
-        number = helpers.get_decimal_input(
+        number = helpers.get_float_input(
             "Digite o número a ser convertido: ")
         outcome = d.Double_converter(number)
         signal, exponent, mantissa = outcome.split(".")
