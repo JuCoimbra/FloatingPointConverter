@@ -1,3 +1,3 @@
 # FloatingPointConverter
 
-Projeto de conversor de números para o padrão IEEe 754
+Projeto de conversor de números para o padrão IEEE 754
